@@ -3,7 +3,7 @@ require 'roo'
 
 class UploadExcel
 	
-	def self.upload
+  def self.upload
     path = File.expand_path('../lib/files/example.xlsx1', __FILE__)
     spreadsheet = self.open_spreadsheet(path)
     header = spreadsheet.row(1)
