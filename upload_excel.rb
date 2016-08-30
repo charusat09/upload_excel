@@ -4,7 +4,7 @@ require 'roo'
 class UploadExcel
 	
 	def self.upload
-    path = File.expand_path('../lib/files/example.xlsx', __FILE__)
+    path = File.expand_path('../lib/files/example.xlsx1', __FILE__)
     spreadsheet = self.open_spreadsheet(path)
     header = spreadsheet.row(1)
     puts "header : #{header}"
@@ -13,10 +13,10 @@ class UploadExcel
   end
 
   def self.open_spreadsheet(path)
-    file = Roo::Spreadsheet.open(path, extension: :xlsx)
-    if file
-    	file
-    else raise "Unknown file type: #{file.original_filename}"
+    case File.extname(path)
+    when ".xls" then Roo::Spreadsheet.open(path, extension: :xls)
+    when ".xlsx" then Roo::Spreadsheet.open(path, extension: :xlsx)
+    else raise "Unknown file type: #{File.basename path}"
     end
   end
 end
